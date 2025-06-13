@@ -30,10 +30,10 @@ onMounted(() => {
       <!-- common -->
       <ul class="right hide-on-med-and-down">
         <li>
-          <router-link to="/">
+          <NuxtLink to="/">
             首頁
             <i class="material-icons left">home</i>
-          </router-link>
+          </NuxtLink>
         </li>
       </ul>
     </div>
@@ -41,7 +41,7 @@ onMounted(() => {
   <!-- mobile -->
   <ul id="mobile-demo" class="sidenav">
     <li>
-      <router-link to="/">首頁</router-link>
+      <NuxtLink to="/">首頁</NuxtLink>
     </li>
   </ul>
 </template>
