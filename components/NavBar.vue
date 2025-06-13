@@ -6,8 +6,18 @@ onMounted(() => {
   const elems = document.querySelectorAll(".modal");
   M.Modal.init(elems);
 
-  const sidenavElems = document.querySelectorAll(".sidenav");
-  M.Sidenav.init(sidenavElems);
+  nextTick(() => {
+    const elems = document.querySelectorAll(".sidenav");
+    M.Sidenav.init(elems, { draggable: true });
+
+    // change position for navbar overlay
+    const overlay = document.querySelector(".sidenav-overlay");
+    const sidenav = document.querySelector(".sidenav");
+
+    if (overlay && sidenav) {
+      sidenav.parentNode?.insertBefore(overlay, sidenav);
+    }
+  });
 });
 </script>
 

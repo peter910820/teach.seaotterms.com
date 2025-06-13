@@ -41,7 +41,6 @@
 .browser-default {
   background-color: #f2ebea;
   font-size: 15px;
-  font-family: "Cubic_11_1.100_R";
 }
 
 /* hide materializecss select in mobile */
