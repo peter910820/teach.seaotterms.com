@@ -1,7 +1,7 @@
 <template>
-  <div class="row center-align">
+  <div class="row center-align page-block">
     <h1>教學文章系列</h1>
-    <div class="col s12 series-block">
+    <div class="col s12 series-block floatup-div">
       <div class="row">
         <div class="col s3 series-image">
           <!-- eslint-disable vue/html-self-closing -->
@@ -14,6 +14,9 @@
 </template>
 
 <style scoped>
+.page-block {
+  padding: 20px;
+}
 .series-block {
   min-height: 100px;
   border: 2px solid black;
