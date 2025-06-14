@@ -3,11 +3,11 @@
     <NavBar />
   </div>
   <div class="row main-style">
-    <div class="col s2" />
+    <div class="col s2"></div>
     <div class="col s8 main-block">
       <NuxtPage />
     </div>
-    <div class="col s2" />
+    <div class="col s2"></div>
   </div>
 </template>
 
@@ -71,5 +71,11 @@
   min-height: 100vh !important;
   border: 2px solid transparent;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* 文字顯示項 */
+.big-title {
+  font-size: 30px;
+  margin-bottom: 20px;
 }
 </style>

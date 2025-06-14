@@ -4,7 +4,6 @@
     <div class="col s12 series-block floatup-div">
       <div class="row">
         <div class="col s3 series-image">
-          <!-- eslint-disable vue/html-self-closing -->
           <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Go_Logo_Blue.svg" />
         </div>
         <div class="col s9 left-align series-title">Golang系列教學</div>
@@ -15,7 +14,7 @@
 
 <style scoped>
 .page-block {
-  padding: 20px;
+  padding: 30px;
 }
 .series-block {
   min-height: 100px;
