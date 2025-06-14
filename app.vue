@@ -3,11 +3,11 @@
     <NavBar />
   </div>
   <div class="row main-style">
-    <div class="col s2"></div>
-    <div class="col s8 main-block">
+    <div class="col s3"></div>
+    <div class="col s6 main-block">
       <NuxtPage />
     </div>
-    <div class="col s2"></div>
+    <div class="col s3"></div>
   </div>
 </template>
 
