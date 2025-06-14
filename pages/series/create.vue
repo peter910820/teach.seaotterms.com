@@ -37,6 +37,11 @@ const submit = async () => {
     errorVisible.value = true;
   }
 };
+
+const switchBlock = async () => {
+  mainVisible.value = true;
+  errorVisible.value = false;
+};
 </script>
 
 <template>
@@ -80,8 +85,8 @@ const submit = async () => {
         <div class="col s12 big-title">資料鍵入失敗!</div>
         <div class="col s12 content">{{ errorMsg }}</div>
         <div class="col s12">
-          <button class="button-submit" type="button">
-            <NuxtLink to="/series/create">重新鍵入</NuxtLink>
+          <button class="button-submit" type="button" @click="switchBlock()">
+            重新鍵入
             <i class="material-icons right">send</i>
           </button>
         </div>
