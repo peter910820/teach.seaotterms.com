@@ -2,8 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-05-15",
   devtools: { enabled: true },
-  modules: ["@nuxtjs/eslint-module"],
-  css: ["~/assets/css/global.css", "~/assets/css/floatup.css"],
+  css: ["~/assets/css/global.css", "~/assets/css/floatup.css", "~/assets/css/button.css"],
   app: {
     head: {
       script: [
