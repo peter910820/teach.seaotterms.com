@@ -28,7 +28,7 @@ const { data, error } = await useFetch<Response>(apiUrl + "/api/series", {
 });
 
 const goToSeriesPage = async (id: number) => {
-  router.push(`./series/${id}`);
+  router.push({ path: `/series/${id}` }); // Relative Path
 };
 
 if (error.value) {

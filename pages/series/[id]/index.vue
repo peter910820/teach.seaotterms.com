@@ -30,7 +30,7 @@ const { data, error } = await useFetch<Response>(apiUrl + `/api/article?series-i
 });
 
 const goToArticlePage = async (id: number) => {
-  router.push(`./article/${id}`);
+  router.push({ path: `/article/${id}` }); // Relative Path
 };
 
 if (error.value) {
