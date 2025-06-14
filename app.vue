@@ -78,4 +78,8 @@
   font-size: 30px;
   margin-bottom: 20px;
 }
+/* 顏色 */
+.main-color {
+  background-color: #f2ebea;
+}
 </style>

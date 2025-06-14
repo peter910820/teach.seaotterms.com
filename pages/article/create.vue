@@ -2,18 +2,65 @@
 import { ref } from "vue";
 import axios from "axios";
 
+import MarkdownIt from "markdown-it";
+import hljs from "highlight.js";
+import "highlight.js/styles/github-dark.css"; // highlight-styles
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+declare const M: any;
+
+const route = useRoute();
+
 interface FormData {
   title: string;
   image: string;
+  seriesId: number;
+  tags: string[];
+  content: string;
 }
 const form = ref<FormData>({
   title: "",
   image: "",
+  seriesId: Number(route.query["series-id"]),
+  tags: [],
+  content: "",
 });
+
 const mainVisible = ref<boolean>(true);
 const successVisible = ref<boolean>(false);
 const errorVisible = ref<boolean>(false);
 const errorMsg = ref<string>("");
+
+onMounted(() => {
+  nextTick(() => {
+    document.addEventListener("DOMContentLoaded", function () {
+      const elems = document.querySelectorAll(".modal");
+      M.Modal.init(elems, {});
+    });
+  });
+});
+
+const renderMarkdown = (content: string) => {
+  const md = MarkdownIt({
+    highlight: (str: string, lang: string): string => {
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          return (
+            '<pre><code class="hljs">' +
+            hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
+            "</code></pre>"
+          );
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      return '<pre><code class="hljs">' + md.utils.escapeHtml(str) + "</code></pre>";
+    },
+  });
+  return md.render(content);
+};
+const renderedMarkdown = computed(() => renderMarkdown(form.value.content));
 
 const submit = async () => {
   const apiUrl = useRuntimeConfig().public.API_URL;
@@ -22,9 +69,13 @@ const submit = async () => {
     return;
   }
 
+  // 清理materialize-textarea自適應化高度的多餘組件
+  const hiddenDivs = document.querySelectorAll(".hiddendiv.common");
+  hiddenDivs.forEach((div) => div.remove());
+
   try {
     mainVisible.value = false;
-    await axios.post(apiUrl + "/api/series", form.value);
+    await axios.post(apiUrl + "/api/article", form.value);
     successVisible.value = true;
   } catch (error) {
     const status = axios.isAxiosError(error) ? error.response?.status : undefined;
@@ -41,9 +92,14 @@ const submit = async () => {
 
 <template>
   <div class="row center-align page-block">
-    <h1>建立系列</h1>
+    <h1>建立文章</h1>
     <div v-if="mainVisible" class="col s12 create-block">
       <div class="row">
+        <!-- Modal Structure -->
+        <div id="modal" class="modal left-align">
+          <!-- eslint-disable-next-line vue/no-v-html -->
+          <div class="markdown-preview col s12 main-color" v-html="renderedMarkdown"></div>
+        </div>
         <div class="input-field col s12">
           <i class="material-icons prefix">title</i>
           <input id="title" v-model="form.title" type="text" class="validate" required />
@@ -56,9 +112,15 @@ const submit = async () => {
           <span class="helper-text" data-success=""></span>
           <label for="image">image</label>
         </div>
+        <div class="input-field text-insert col s12">
+          <i class="material-icons prefix">mode_edit</i>
+          <textarea id="content" v-model="form.content" class="materialize-textarea"></textarea>
+          <label for="content">Content</label>
+        </div>
         <div class="col s12">
+          <button data-target="modal" class="btn modal-trigger">預覽</button>
           <button class="button-submit" type="button" @click="submit">
-            建立系列
+            建立文章
             <i class="material-icons right">send</i>
           </button>
         </div>

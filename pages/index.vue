@@ -27,7 +27,7 @@ const { data, error } = await useFetch<Response>(apiUrl + "/api/series", {
   server: true,
 });
 
-const goToArticlePage = async (id: number) => {
+const goToSeriesPage = async (id: number) => {
   router.push(`./series/${id}`);
 };
 
@@ -39,7 +39,7 @@ if (error.value) {
 <template>
   <div class="row center-align page-block">
     <h1>教學文章系列</h1>
-    <div v-for="d in data?.data" :key="d.id" class="col s12 series-block floatup-div" @click="goToArticlePage(d.id)">
+    <div v-for="d in data?.data" :key="d.id" class="col s12 series-block floatup-div" @click="goToSeriesPage(d.id)">
       <div class="row">
         <div class="col s3 series-image">
           <img :src="d.image" />
