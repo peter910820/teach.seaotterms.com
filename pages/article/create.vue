@@ -80,7 +80,7 @@ const submit = async () => {
 
   try {
     mainVisible.value = false;
-    await axios.post(apiUrl + "/api/article", form.value);
+    await axios.post(apiUrl + "/article", form.value);
     successVisible.value = true;
   } catch (error) {
     const status = axios.isAxiosError(error) ? error.response?.status : undefined;

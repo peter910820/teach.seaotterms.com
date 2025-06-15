@@ -27,7 +27,7 @@ interface Article {
   updatedName: string;
 }
 
-const { data, error } = await useFetch<Response>(apiUrl + `/api/article?id=${route.params.id}`, {
+const { data, error } = await useFetch<Response>(apiUrl + `/article?id=${route.params.id}`, {
   method: "GET",
   lazy: false,
   server: true,

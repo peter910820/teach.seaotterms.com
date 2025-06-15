@@ -21,7 +21,7 @@ interface Series {
   updatedName: string;
 }
 
-const { data, error } = await useFetch<Response>(apiUrl + "/api/series", {
+const { data, error } = await useFetch<Response>(apiUrl + "/series", {
   method: "GET",
   lazy: false,
   server: true,

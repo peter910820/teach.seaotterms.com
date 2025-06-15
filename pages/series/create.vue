@@ -24,7 +24,7 @@ const submit = async () => {
 
   try {
     mainVisible.value = false;
-    await axios.post(apiUrl + "/api/series", form.value);
+    await axios.post(apiUrl + "/series", form.value);
     successVisible.value = true;
   } catch (error) {
     const status = axios.isAxiosError(error) ? error.response?.status : undefined;
